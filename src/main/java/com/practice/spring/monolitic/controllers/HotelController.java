@@ -4,6 +4,7 @@ import com.practice.spring.monolitic.dto.HotelDTO;
 import com.practice.spring.monolitic.dto.SimpleCRUDResponseDTO;
 import com.practice.spring.monolitic.services.contract.HotelService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +29,12 @@ public class HotelController {
     }
 
     @PostMapping
-    public ResponseEntity<SimpleCRUDResponseDTO> save(@RequestBody HotelDTO hotelDTO){
+    public ResponseEntity<SimpleCRUDResponseDTO> save(@RequestBody @Validated HotelDTO hotelDTO){
         return ResponseEntity.ok().body(this.hotelService.save(hotelDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SimpleCRUDResponseDTO> update(@RequestBody HotelDTO hotelDTO, @PathVariable Long id){
+    public ResponseEntity<SimpleCRUDResponseDTO> update(@RequestBody @Validated HotelDTO hotelDTO, @PathVariable Long id){
         return ResponseEntity.ok().body(this.hotelService.update(id, hotelDTO));
     }
 
